@@ -8,11 +8,11 @@ ADD alpine-minirootfs-3.23.3-x86_64.tar.gz /
 
 WORKDIR /app
 
-RUN apk add --no-cache git openssh-client
-
-RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
-
-RUN --mount=type=ssh git clone git@github.com:Jakub-JD/pawcho6.git .
+RUN --mount=type=ssh \
+    apk add --no-cache git openssh-client && \
+    mkdir -p -m 0700 ~/.ssh && \
+    ssh-keyscan github.com >> ~/.ssh/known_hosts && \
+    git clone git@github.com:Jakub-JD/pawcho6.git .
 
 ARG VERSION="1.0"
 
