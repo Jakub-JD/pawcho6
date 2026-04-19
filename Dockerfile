@@ -38,7 +38,7 @@ RUN apk add --update curl && \
 
 COPY --from=builder /app/create_app.sh /docker-entrypoint.d/40-create_app.sh
 
-HEALTHCHECK --interval=30s --timeout=30s --start-period=0s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=30s --start-period=1s --retries=3 \
   CMD curl -f http://localhost/ || exit 1
 
 EXPOSE 80
